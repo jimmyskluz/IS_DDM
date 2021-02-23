@@ -1,0 +1,12 @@
+CREATE OR ALTER procedure addCourse @p_name varchar(30), @p_level char(1), @p_lector varchar(30), @p_capacity integer, @p_class integer
+as
+begin try
+    declare @v_idLecor integer
+    declare @p_meno varchar(50)
+	select @v_idLecor=idlector from lector where last_name = @p_lector
+
+	insert into course values (@p_name, @p_level,@p_capacity,@v_idLecor,@p_class)
+    end try 
+begin catch 
+    print'course nebyl vlozeny'; 
+end catch; 
